@@ -2,8 +2,13 @@
 {
   "@context" : "http://schema.org",
   "@type" : "Article",
-  "name" : "Package Console Powershell Cheat Sheet",
-  "datePublished" : "2016-08-19T00:00:00.0000000"
+  "headline" : "Package Console Powershell Cheat Sheet",
+  "datePublished" : "2016-08-19T00:00:00.0000000",
+  "dateModified": "2017-12-10T15:12:32.0000000-06:00",
+  "author": {
+      "name": "Mark Lopez"
+  },
+  "description": "A personal cheat sheet on using PowerShell commands via the Package Console."
 }
 </script><article class="s-content pt-4 m-4 flex-column align-items-stretch"><div class="flex-column d-flex justify-content-center align-items-center"><div class=s-title><h1 class="display-4 text-center">Package Console Powershell Cheat Sheet</h1><div class=text-center>Created on <time datetime=2016-08-19T00:00:00.0000000>August 19, 2016</time>.</div><div class=text-center>Last commit <a class=text-uppercase href=https://github.com/Silvenga/silvenga.com/commit/7f99874a>7f99874a</a> on <time datetime=2017-12-10T15:12:32.0000000-06:00>December 10, 2017</time> - 3 total changes.</div><hr></div></div><div class="justify-content-center mt-2"><main class="s-article d-flex flex-column align-items-center" role=main><p>A cheat sheet of all the cool things that knowing PowerShell can help with when dealing with Visual Studio's Package Console.</p><blockquote class=blockquote><p>Copy packages from one project to another.</p></blockquote><pre><code>Get-Package -ProjectName {From Project} | Install-Package -ProjectName {Target Project} -IgnoreDependencies
 </code></pre><blockquote class=blockquote><p>Same as above, but if you care about versions</p></blockquote><pre><code>Get-Package -ProjectName {From Project} | % { Install-Package -ProjectName {Target Project} -IgnoreDependencies -Version $_.Version.ToString() $_.Id }

@@ -2,8 +2,13 @@
 {
   "@context" : "http://schema.org",
   "@type" : "Article",
-  "name" : "Setup Apache to Serve Ghost Blogs",
-  "datePublished" : "2014-07-11T00:00:00.0000000"
+  "headline" : "Setup Apache to Serve Ghost Blogs",
+  "datePublished" : "2014-07-11T00:00:00.0000000",
+  "dateModified": "2017-12-10T15:12:32.0000000-06:00",
+  "author": {
+      "name": "Mark Lopez"
+  },
+  "description": "Using Apache as a reverse proxy to service a Ghost instance."
 }
 </script><article class="s-content pt-4 m-4 flex-column align-items-stretch"><div class="flex-column d-flex justify-content-center align-items-center"><div class=s-title><h1 class="display-4 text-center">Setup Apache to Serve Ghost Blogs</h1><div class=text-center>Created on <time datetime=2014-07-11T00:00:00.0000000>July 11, 2014</time>.</div><div class=text-center>Last commit <a class=text-uppercase href=https://github.com/Silvenga/silvenga.com/commit/7f99874a>7f99874a</a> on <time datetime=2017-12-10T15:12:32.0000000-06:00>December 10, 2017</time> - 2 total changes.</div><hr></div></div><div class="justify-content-center mt-2"><main class="s-article d-flex flex-column align-items-center" role=main><p>I recently got a request to write a tutorial on how to set up a pre-existing Ghost blog to be served by Apache (the master web server) under the root domain. To add a twist, I will also show how to use Apache as a caching server for the static content of Ghost.</p><p>For this tutorial I assume the use of Apache 2.2 running on Ubuntu 12.04 LTS. I also assume a basic knowledge of Ubuntu and Apache. Let's start!</p><p>Lets start of with a clean slate. I personally make sure all my packages are updated and current. Good practice and can prevent issues in the future.</p><pre><code>sudo apt-get update
 sudo apt-get upgrade

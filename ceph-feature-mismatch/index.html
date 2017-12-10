@@ -2,8 +2,13 @@
 {
   "@context" : "http://schema.org",
   "@type" : "Article",
-  "name" : "Ceph Feature Missmatch with Kubernetes",
-  "datePublished" : "2017-10-04T21:50:00.0000000"
+  "headline" : "Ceph Feature Missmatch with Kubernetes",
+  "datePublished" : "2017-10-04T21:50:00.0000000",
+  "dateModified": "2017-12-10T16:48:05.0000000-06:00",
+  "author": {
+      "name": "Mark Lopez"
+  },
+  "description": "Getting Ceph to place nice with Kubernetes."
 }
 </script><article class="s-content pt-4 m-4 flex-column align-items-stretch"><div class="flex-column d-flex justify-content-center align-items-center"><div class=s-title><h1 class="display-4 text-center">Ceph Feature Missmatch with Kubernetes</h1><div class=text-center>Created on <time datetime=2017-10-04T21:50:00.0000000>October 04, 2017</time>.</div><div class=text-center>Last commit <a class=text-uppercase href=https://github.com/Silvenga/silvenga.com/commit/c9be2c7d>c9be2c7d</a> on <time datetime=2017-12-10T16:48:05.0000000-06:00>December 10, 2017</time> - 4 total changes.</div><hr></div></div><div class="justify-content-center mt-2"><main class="s-article d-flex flex-column align-items-center" role=main><figure class=figure><p><img src=/content/images/2017/kubernetes-plus-ceph.png class=img-fluid alt="Kubernetes + Ceph"></p><figcaption class=figure-caption>Source: <a href="https://habrahabr.ru/company/flant/blog/329666/">habrahabr.ru</a></figcaption></figure><p>I needed a better backing storage system for my Kubernetes cluster - I am done with NFS (so many problems). In the end I decided I'll go for a Ceph cluster after being rather impressed by the feature set.</p><p>So I got a Luminous Ceph cluster deployed and everything was working (after fighting with the beta external storage features, no more custom Kube Controllers, yay!). Then I tried to actually get a test deployment up, but I kept on seeing the following errors on my nodes:</p><pre><code>libceph: mon0 172.16.0.104:6789 feature set mismatch, my 106b84a842a42 &lt; server's 40106b84a842a42, missing 400000000000000
 </code></pre><p>I originally thought it was due to running Luminous (the ceph provisioner that I was using targeted Jewel) so I created my own image with Luminous binaries. Same message as before, no change from what I could tell. My next idea was the image format was to new (stupid thought in retrospective, <em>shrug</em>). No change on that error message.</p><p>Looking deeper into the error message (which I should have done before). This error occurred from a monitor after image construction, but before image mount. The error was complaining that the feature flag <code>400000000000000</code> was missing support by my client. This feature turns out to mean basically <code>CRUSH_TUNABLES5</code> with the following requirements (Google is great at this):</p><pre><code>v10.0.2 (jewel) or later

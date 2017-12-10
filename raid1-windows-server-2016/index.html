@@ -2,8 +2,13 @@
 {
   "@context" : "http://schema.org",
   "@type" : "Article",
-  "name" : "Install Windows Server 2016 using Software RAID1",
-  "datePublished" : "2017-03-27T21:18:01.0000000"
+  "headline" : "Install Windows Server 2016 using Software RAID1",
+  "datePublished" : "2017-03-27T21:18:01.0000000",
+  "dateModified": "2017-12-10T16:48:05.0000000-06:00",
+  "author": {
+      "name": "Mark Lopez"
+  },
+  "description": "How to set-up Windows Server 2016 using software RAID1 - on the system volume."
 }
 </script><article class="s-content pt-4 m-4 flex-column align-items-stretch"><div class="flex-column d-flex justify-content-center align-items-center"><div class=s-title><h1 class="display-4 text-center">Install Windows Server 2016 using Software RAID1</h1><div class=text-center>Created on <time datetime=2017-03-27T21:18:01.0000000>March 27, 2017</time>.</div><div class=text-center>Last commit <a class=text-uppercase href=https://github.com/Silvenga/silvenga.com/commit/c9be2c7d>c9be2c7d</a> on <time datetime=2017-12-10T16:48:05.0000000-06:00>December 10, 2017</time> - 7 total changes.</div><hr></div></div><div class="justify-content-center mt-2"><main class="s-article d-flex flex-column align-items-center" role=main><h2 id=setup>Setup</h2><p>Most Windows installers if not all modern versions have a command line option that can be accessed when using the GUI installer (from anywhere from what I can tell). This functionality can be accessed with <code>SHIFT + F10</code> and looks like:</p><p><img src=/content/images/2017/command-line.png class=img-fluid alt="Commandline within Windows Installer."></p><p>From here we can access <code>diskpart</code>. From Microsoft's Technet, &quot;DiskPart is a text-mode command interpreter [that] enables you to manage objects (disks, partitions, or volumes) by using scripts or direct input at a command prompt.&quot;</p><p>Think <code>parted</code> if you're coming from Linux - but with a lot more functionality. You might have used it under the name &quot;Disk Management&quot;, which is basically a GUI wrapper. We will need this program to preparing the Windows installer to install to a RAID 1 setup.</p><p>To use Diskpart, invoke it from the command line using:</p><pre><code>X:\Sources&gt; diskpart
 DISKPART&gt; 

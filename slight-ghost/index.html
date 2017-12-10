@@ -2,8 +2,13 @@
 {
   "@context" : "http://schema.org",
   "@type" : "Article",
-  "name" : "Ghost Scaffolding",
-  "datePublished" : "2014-12-16T00:00:00.0000000"
+  "headline" : "Ghost Scaffolding",
+  "datePublished" : "2014-12-16T00:00:00.0000000",
+  "dateModified": "2017-12-10T16:48:05.0000000-06:00",
+  "author": {
+      "name": "Mark Lopez"
+  },
+  "description": "A different take on how to host a Ghost instance, while using NPM as an upgrade manager."
 }
 </script><article class="s-content pt-4 m-4 flex-column align-items-stretch"><div class="flex-column d-flex justify-content-center align-items-center"><div class=s-title><h1 class="display-4 text-center">Ghost Scaffolding</h1><div class=text-center>Created on <time datetime=2014-12-16T00:00:00.0000000>December 16, 2014</time>.</div><div class=text-center>Last commit <a class=text-uppercase href=https://github.com/Silvenga/silvenga.com/commit/c9be2c7d>c9be2c7d</a> on <time datetime=2017-12-10T16:48:05.0000000-06:00>December 10, 2017</time> - 5 total changes.</div><hr></div></div><div class="justify-content-center mt-2"><main class="s-article d-flex flex-column align-items-center" role=main><p><img src=/content/images/2014/12/ghost_logo-2.jpg class=img-fluid alt="The Ghost Blog logo."></p><h2 id=introduction>Introduction</h2><p>I believe that upgrades should be simple, as such, I really hate dealing with zips and messing around in Ghost's core directory just to get the thing updated. Being the lazy developer that I am, I created this mini-project called Slight Ghost - a simple scaffolding for a Ghost blog, optimised for streamlined updates.</p><h2 id=install>Install</h2><p>Make sure <code>git</code> and <code>node</code> is installed before attempting to install <code>slight-ghost</code></p><pre><code># Ubuntu
 sudo add-apt-repository ppa:chris-lea/node.js 

@@ -2,8 +2,13 @@
 {
   "@context" : "http://schema.org",
   "@type" : "Article",
-  "name" : "Notes on OpenVPN Obfuscating",
-  "datePublished" : "2015-01-24T00:00:00.0000000"
+  "headline" : "Notes on OpenVPN Obfuscating",
+  "datePublished" : "2015-01-24T00:00:00.0000000",
+  "dateModified": "2017-12-10T15:12:32.0000000-06:00",
+  "author": {
+      "name": "Mark Lopez"
+  },
+  "description": "Some notes on how to setup OpenVPN obfuscation using Obfproxy."
 }
 </script><article class="s-content pt-4 m-4 flex-column align-items-stretch"><div class="flex-column d-flex justify-content-center align-items-center"><div class=s-title><h1 class="display-4 text-center">Notes on OpenVPN Obfuscating</h1><div class=text-center>Created on <time datetime=2015-01-24T00:00:00.0000000>January 24, 2015</time>.</div><div class=text-center>Last commit <a class=text-uppercase href=https://github.com/Silvenga/silvenga.com/commit/7f99874a>7f99874a</a> on <time datetime=2017-12-10T15:12:32.0000000-06:00>December 10, 2017</time> - 2 total changes.</div><hr></div></div><div class="justify-content-center mt-2"><main class="s-article d-flex flex-column align-items-center" role=main><blockquote class=blockquote><p>This is a work in progress. I would very much like to make a GUI for the windows version of obfsproxy, and a better wrapper for Ubuntu.</p></blockquote><blockquote class=blockquote><p>Below is weekend muse which works, but IMHO rather hackish'ly.</p></blockquote><h2 id=server-ubuntu-14.04-lts>Server (Ubuntu 14.04 LTS)</h2><p><code>obfsproxy</code> is included in the default Ubuntu Trusty repos now (although a bit out of date). It contains the pluggable transport <code>obfs3</code>.</p><pre><code>apt-get install obfsproxy
 
