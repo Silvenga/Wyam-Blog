@@ -8,27 +8,46 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry: {
         main: ["./src/main.ts", "./src/styles/main.scss"],
-        'gist-loader': "./src/components/gists/gist-loader"
+        // main: "../output/index.html"
+        // 'gist-loader': "./src/components/gists/gist-loader"
     },
     output: {
         path: path.resolve("../dist"),
         filename: "[name].js",
-        chunkFilename: "[name].js",
         publicPath: "/"
     },
     mode: "development",
     resolve: {
         extensions: [".ts", ".js"],
-        modules: ["src", "node_modules"].map(x => path.resolve(x))
+        modules: ["src", "node_modules"].map(x => path.resolve(x)),
+        alias: {
+            "@root": path.resolve(__dirname, 'src/')
+        }
     },
     devtool: "source-maps",
     module: {
         rules: [
             {
                 test: /\.ts$/,
+                issuer: /\.ts?$/i,
                 use: [
                     'babel-loader',
                     'ts-loader'
+                ],
+            },
+            {
+                test: /\.ts$/,
+                issuer: /\.html?$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name() {
+                                return '[name].js';
+                            }
+                        }
+                    },
+                    'bundle-loader'
                 ],
             },
             {
@@ -75,10 +94,10 @@ module.exports = {
                         loader: 'html-loader',
                         options: {
                             attrs: [':data-src'],
-                            root: "..",
-                            minimize: true
+                            root: path.resolve("../output"),
+                            minimize: true,
                         }
-                    },
+                    }
                 ]
             },
             {
