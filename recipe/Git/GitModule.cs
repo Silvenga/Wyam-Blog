@@ -30,8 +30,6 @@ namespace Wyam.SlightBlog.Git
             if (repositoryPath != null && !repositoryPath.IsAbsolute)
                 throw new ArgumentException("The repository location must be absolute", nameof(repositoryPath));
 
-            SetupNativePaths.SetupGit();
-
             _repositoryPath = repositoryPath;
         }
 

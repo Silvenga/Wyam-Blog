@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using LibGit2Sharp;
@@ -18,11 +19,11 @@ namespace Wyam.SlightBlog.Git
                 }
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 {
-                    os = "os";
+                    os = "osx";
                 }
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {
-                    os = "win";
+                    os = "debian.9";
                 }
 
                 var arch = RuntimeInformation.OSArchitecture.ToString().ToLower();
@@ -36,6 +37,8 @@ namespace Wyam.SlightBlog.Git
         {
             var nativeDirectory = Path.Combine(GetExecutingAssemblyDirectory(), "runtimes", NativePlatform, "native");
 
+            Console.WriteLine($"NATIVE {nativeDirectory}");
+
             GlobalSettings.NativeLibraryPath = nativeDirectory;
         }
 
@@ -43,9 +46,15 @@ namespace Wyam.SlightBlog.Git
         {
             string path = Assembly.GetExecutingAssembly().CodeBase;
             if (path.StartsWith("file:///"))
-                path = path.Substring(8).Replace('/', '\\');
+            {
+                path = path.Substring("file://".Length).Replace('/', Path.DirectorySeparatorChar);
+                Console.WriteLine(path);
+            }
             else if (path.StartsWith("file://"))
-                path = "\\\\" + path.Substring(7).Replace('/', '\\');
+            {
+                path = "\\\\" + path.Substring(7).Replace('/', Path.DirectorySeparatorChar);
+            }
+
             return Path.GetDirectoryName(path);
         }
     }
