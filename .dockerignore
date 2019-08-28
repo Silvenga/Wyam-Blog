@@ -1,0 +1,10 @@
+.git
+dist
+src/node_modules
+recipe/bin
+recipe/obj
+.vs
+config.wyam.dll
+config.wyam.hash
+output
+docs
